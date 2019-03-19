@@ -20,9 +20,16 @@ public class Libretto {
 	 * aggiunge un nuovo voto al libretto
 	 * 
 	 * @param v {@link Voto} da aggiungere
+	 * @return {@code true} nel caso normale
+	 * 		   {@code false} se non è riuscito ad aggiungere il voto
 	 */
-	public void add(Voto v) {
-		voti.add(v);
+	public boolean add(Voto v) {
+		if(!this.esisteGiaVoto(v) && !this.votoConflitto(v)) {
+			voti.add(v);
+			return true;
+		} else {
+			return false;	
+		}
 	}
 	
 	/**
@@ -90,6 +97,10 @@ public class Libretto {
 		else 
 			return (v.getPunti()!=this.voti.get(pos).getPunti());
 		
+	}
+	
+	public String toString() {
+		return this.voti.toString();
 	}
 		
 	
